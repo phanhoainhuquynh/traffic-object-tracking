@@ -22,10 +22,10 @@ python -m pip install -r requirements.txt
 
 ## Run
 
-Pass a path to your own video. The first run downloads the YOLOv8s weights automatically if they are not present.
+Download the team video, [Video of people across the road](https://drive.google.com/file/d/1-KLIsu6hHfYMYuT4ZT1Hj8XNRZnDMJ6E/view?usp=sharing), from Google Drive and save it locally. Each team member needs access to the shared Drive file. The script needs the local file path; it cannot read the Drive page URL directly. The first run downloads the model weights automatically if they are not present.
 
 ```powershell
-python track.py --source "D:\Videos\traffic.mp4" --seconds 30 --output outputs_test
+python track.py --source "D:\Research Intern - Connected Urban Mobility\Video of people across the road.mp4" --seconds 30 --output outputs_test
 ```
 
 Process the first three minutes at higher image resolution:
