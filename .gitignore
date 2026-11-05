@@ -1,0 +1,18 @@
+# Videos and generated results
+*.mp4
+outputs*/
+
+# Downloaded model checkpoints
+*.pt
+
+# Python environments and cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
