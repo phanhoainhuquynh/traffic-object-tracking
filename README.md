@@ -9,6 +9,8 @@ Track road users in a video with YOLOv8 and ByteTrack. The script draws class la
 - A local video file
 - CPU works; a supported CUDA GPU can speed up inference
 
+For an NVIDIA GPU, install the PyTorch build matching the team's operating system, Python version, and CUDA option using the [official PyTorch installation selector](https://pytorch.org/get-started/locally/). Then install this project's requirements. Verify GPU access with `python -c "import torch; print(torch.cuda.is_available())"`; it should print `True` to use CUDA.
+
 Install dependencies from PowerShell:
 
 ```powershell
@@ -31,6 +33,18 @@ Process the first three minutes at higher image resolution:
 ```powershell
 python track.py --source "D:\Videos\traffic.mp4" --seconds 180 --imgsz 1280 --conf 0.05 --output outputs_run
 ```
+
+## Run the strongest released YOLO detector
+
+Ultralytics lists YOLO26 as its latest released family. `yolo26x.pt` is its largest detection model and the accuracy-first option in that family. It needs more GPU memory and runs more slowly than the `n`, `s`, or `m` models. For practical use, run it on a CUDA-enabled NVIDIA GPU; this project's current authoring machine has CPU-only PyTorch, so running the `x` model here is not recommended.
+
+After installing the environment and placing the source video on the machine, use this command to process only the requested video, for three minutes, into a dedicated output folder:
+
+```powershell
+python track.py --source "D:\Research Intern - Connected Urban Mobility\Video of people across the road.mp4" --seconds 180 --model yolo26x.pt --imgsz 1280 --conf 0.05 --output outputs_people_yolo26x_3min
+```
+
+Ultralytics downloads `yolo26x.pt` automatically on the first run. The video path is local to each team member and is intentionally excluded from Git. If the GPU runs out of memory, lower `--imgsz` to `960`; use `yolo26l.pt` or `yolo26m.pt` if the `x` model is too slow or too large for the available GPU.
 
 The default sampling stride is 3. For a 30 FPS source, the script processes 10 frames per second of video and preserves the source duration in the output. Increase `--stride` for faster, less dense tracking; use `--stride 1` to process every frame. The output video is resized to at most 1280 pixels wide and has no audio.
 
