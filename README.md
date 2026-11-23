@@ -96,3 +96,19 @@ python track.py --source "D:\Videos\traffic.mp4" --seconds 30 --output outputs_t
 
 - [Ultralytics tracking mode](https://docs.ultralytics.com/modes/track/)
 - [ByteTrack paper](https://arxiv.org/abs/2110.06864)
+
+## Count F1 crossings from CVAT tracks
+
+From the repository root, place the two files from the team's local F1 run in `outputs_crossings/`:
+
+- `source.mp4` is the original `073429_to_074429_10fps.mp4` clip (720 × 480, 10 fps, 6,000 frames).
+- `tracks.json` contains the CVAT track IDs, lane attributes, rectangle keyframes and label mapping for that same clip. Obtain both files from the project owner.
+
+```powershell
+python -m pip install -r requirements.txt
+python count_f1.py
+```
+
+Open `outputs_crossings/F1_count.mp4` to see the counters and `outputs_crossings/F1_events.csv` to inspect the frame and ID for each event. The F1 counter records the first visible frame of each F1 pedestrian or cyclist. The line counter records the first frame where their bounding box touches the yellow segment. Their box and label turn yellow during contact. Cars, trucks and buses appear in their class colors for context.
+
+The annotated clip yields 34 pedestrians and 75 cyclists in F1, including 30 pedestrians and 68 cyclists who touch the line.
