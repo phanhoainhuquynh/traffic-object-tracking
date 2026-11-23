@@ -2,6 +2,14 @@
 
 Track road users in a video with YOLOv8 and ByteTrack. The script draws class labels, track IDs, and short trails, and exports detections to CSV.
 
+## Crossing count demo
+
+[![Animated preview of cyclists and pedestrians at the F1 counting line](media/f1-preview.gif)](media/f1-demo.mp4)
+
+[Watch the 20-second video](media/f1-demo.mp4) · [Open the MP4 directly](https://raw.githubusercontent.com/phanhoainhuquynh/traffic-object-tracking/main/media/f1-demo.mp4)
+
+This excerpt starts 45 seconds into the manually annotated CVAT clip. Follow a pedestrian or cyclist as their box turns yellow at the line. The line counter increases once per track ID, and the displayed totals include earlier frames.
+
 ## Requirements
 
 - Python 3.10 or newer
@@ -112,3 +120,4 @@ python count_f1.py
 Open `outputs_crossings/F1_count.mp4` to see the counters and `outputs_crossings/F1_events.csv` to inspect the frame and ID for each event. The F1 counter records the first visible frame of each F1 pedestrian or cyclist. The line counter records the first frame where their bounding box touches the yellow segment. Their box and label turn yellow during contact. Cars, trucks and buses appear in their class colors for context.
 
 The annotated clip yields 34 pedestrians and 75 cyclists in F1, including 30 pedestrians and 68 cyclists who touch the line.
+
